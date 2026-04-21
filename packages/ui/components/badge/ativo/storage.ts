@@ -1,0 +1,1 @@
+export async function logHealthCheck(feature: string) { /* Registro passivo de estabilidade */ }

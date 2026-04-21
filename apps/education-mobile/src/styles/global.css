@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --surface: #F5F5F5;
+    --text-primary: #000000;
+    --text-secondary: #737373;
+    --brand-horazion: #E50000;
+    --border: #EAEAEA;
+    --error: #E50000;
+    --success: #16A34A;
+  }
+
+  .dark {
+    --background: #0A0A0A;
+    --surface: #171717;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A3A3A3;
+    --brand-horazion: #FF1A1A;
+    --border: #262626;
+  }
+}

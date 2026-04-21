@@ -1,0 +1,1 @@
+export interface AtivoBadgeProps { featureName: string; forceVisible?: boolean; }

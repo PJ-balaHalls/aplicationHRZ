@@ -1,0 +1,1 @@
+export async function logTestEvent(feature: string, group: string) { console.info(`[TESTE] ${feature} - Grupo ${group}`); }

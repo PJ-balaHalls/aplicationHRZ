@@ -1,0 +1,1 @@
+export interface TesteBadgeProps { featureName: string; testGroup: "A" | "B"; }

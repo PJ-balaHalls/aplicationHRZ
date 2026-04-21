@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* [ARCH-HZ] Escaneamento Dinâmico de Monorepo (Tailwind v4) */
+@source "../../apps/web";
+@source "./";
+
+/* [FE-HZ] Tipografia Local (Inter Variable) - Zero Latência Externa */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  font-weight: 100 900; /* Suporte total a todos os pesos da fonte variável */
+  font-display: swap;
+  font-style: normal;
+}
+
+@theme {
+  /* Família Tipográfica Base */
+  --font-sans: "Inter", sans-serif;
+
+  /* Cores Institucionais Absolutas */
+  --color-hrz-red: #B6192E;
+  --color-hrz-purple: #2A0039;
+  --color-hrz-blue: #0A2540;
+  --color-hrz-grey: #8C8C8C;
+
+  /* Tokens Semânticos */
+  --color-background: var(--bg-primary);
+  --color-surface: var(--bg-surface);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border-color);
+  --color-brand: var(--brand-color);
+  
+  /* Sistema Tipográfico Fixo (Escala Horazion) */
+  --text-micro: 0.75rem;
+  --text-label: 0.875rem;
+  --text-base: 1rem;
+  --text-highlight: 1.125rem;
+  --text-sub: 1.25rem;
+  --text-title2: 1.5rem;
+  --text-title1: 2rem;
+  --text-page: 2.5rem;
+  --text-hero: 3.5rem;
+}
+/* =========================================
+   ESTRUTURA DE TEMAS E ACESSIBILIDADE
+   ========================================= */
+
+:root {
+  /* Tema Claro (Default) */
+  --bg-primary: #FFFFFF;
+  --bg-surface: #F8F9FA;
+  --text-primary: #000000;
+  --text-secondary: #5F6368;
+  --border-color: #E0E0E0;
+  --brand-color: #B6192E;
+  
+  /* Escala Base (16px nativo) */
+  font-size: 16px; 
+}
+
+/* Tema Preto */
+[data-theme="black"] {
+  --bg-primary: #121212; /* Carvão muito escuro, não #000 */
+  --bg-surface: #1E1E1E; /* Grafite */
+  --text-primary: #FFFFFF;
+  --text-secondary: #BDBDBD;
+  --border-color: #333333;
+  --brand-color: #D32F2F; /* Ajuste sutil de luminosidade para contraste */
+}
+
+/* Tema Cinza (Baixa distração) */
+[data-theme="gray"] {
+  --bg-primary: #F5F5F5;
+  --bg-surface: #EEEEEE;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --border-color: #BDBDBD;
+  --brand-color: #B6192E; 
+}
+
+/* Tema Autismo (Baixo Estímulo) */
+[data-theme="autism"] {
+  --bg-primary: #FDFDFD;
+  --bg-surface: #F3F4F6;
+  --text-primary: #374151; /* Redução de contraste do preto */
+  --text-secondary: #6B7280;
+  --brand-color: #9B1527; /* Vermelho menos saturado e brilhante */
+  /* Redução nativa de transições */
+  --tw-transition-duration: 0ms !important;
+}
+
+/* =========================================
+   MODIFICADORES DE ACESSIBILIDADE
+   ========================================= */
+
+/* Escala Tipográfica (Rem Scaling) */
+[data-text-size="small"] { font-size: 14px; } /* -2 */
+[data-text-size="large"] { font-size: 18px; } /* +2 */
+
+/* Modo Dislexia */
+[data-dyslexia="true"] {
+  /* Substitui a fonte por OpenDyslexic ou Comic Sans (Fallback seguro) */
+  --font-sans: "OpenDyslexic", "Comic Sans MS", sans-serif;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  line-height: 1.65;
+}
+
+/* Reforço Estrutural para Daltonismo (Achromatopsia / Protanopia) */
+[data-daltonism="true"] {
+  /* Garante que informações não dependam de cor, forçando bordas mais espessas e sublinhados em links */
+  --border-color: #000000;
+}
+[data-daltonism="true"] a { text-decoration: underline; }
+[data-daltonism="true"] .badge-status { border-width: 2px; border-style: solid; }
+
+/* Reset Funcional */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}

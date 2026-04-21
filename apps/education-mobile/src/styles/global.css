@@ -8,7 +8,30 @@
     --surface: #F5F5F5;
     --text-primary: #000000;
     --text-secondary: #737373;
-    --brand-horazion: #E50000;
+    --brand-horazion: #E50000import { getDefaultConfig } from 'expo/metro-config';
+import path from 'path';
+import { withNativeWind } from 'nativewind/metro';
+
+const projectRoot = __dirname;
+const workspaceRoot = path.resolve(projectRoot, '../..');
+
+// Gera a configuração base tipada
+const config = getDefaultConfig(projectRoot);
+
+// 1. Expande o universo de observação do Metro para o monorepo
+config.watchFolders = [workspaceRoot];
+
+// 2. Define a hierarquia estrita para evitar colisão
+if (config.resolver) {
+  config.resolver.nodeModulesPaths = [
+    path.resolve(projectRoot, 'node_modules'),
+    path.resolve(workspaceRoot, 'node_modules'),
+  ];
+  config.resolver.disableHierarchicalLookup = true;
+}
+
+// 3. Injeção segura do NativeWind apontando para o CSS dos Blocos Vivos
+export default withNativeWind(config, { input: './src/styles/global.css' });
     --border: #EAEAEA;
     --error: #E50000;
     --success: #16A34A;
